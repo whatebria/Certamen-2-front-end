@@ -9,7 +9,7 @@ import { Toast } from "primereact/toast"
 import React, { useRef, useState } from "react"
 import { Button } from 'primereact/button';
 import { Messages } from 'primereact/messages';
-        
+
 
 
 
@@ -30,7 +30,7 @@ function EntradasForm({ onCreateEntrada = () => { } }) {
         if (!tipoPago) errs.push({ severity: 'error', detail: 'Debe seleccionar tipo de pago' });
         if (!ciudad.trim()) errs.push({ severity: 'error', detail: 'Ciudad es obligatoria' });
         if (!selectPelicula) errs.push({ severity: 'error', detail: 'Debe seleccionar una película' });
-        if ((Number(cantEntradas) || 0) < 1) errs.push({ severity: 'error', detail: 'Cantidad debe ser > 0' });
+        if ((Number(cantEntradas) || 0) < 1) errs.push({ severity: 'error', detail: 'Cantidad no puede ser 0' });
 
         if (errs.length) {
             setErrors(errs);
@@ -64,11 +64,11 @@ function EntradasForm({ onCreateEntrada = () => { } }) {
     ]
 
     return (
-        <div className='mt-5'>
+        <div className='mt-3'>
             <Panel header="Comprar entradas" footer={footerTemplate()}>
                 <Toast ref={toast} />
                 <Messages ref={msgs} />
-                <div className="mb-5">
+                <div className="mb-3">
                     <FloatLabel>
 
                         <label htmlFor="dia" className="font-bold block mb-2">Selecciona dia</label>
@@ -86,22 +86,23 @@ function EntradasForm({ onCreateEntrada = () => { } }) {
                     </FloatLabel>
 
                 </div>
-                <div className="mb-5">
+                <div className="mb-4">
                     <FloatLabel>
                         <label htmlFor="cantEntradas" className="font-bold block mb-2">Cantidad de entradas</label>
                         <InputNumber inputId="cantEntradas" value={cantEntradas} onValueChange={(e) => setCantEntradas(e.value)} mode="decimal" showButtons min={1} />
                     </FloatLabel>
                 </div>
 
-                <div className="mb-5">
+                <div className="mb-3">
                     <FloatLabel>
                         <InputText id="ciudad" value={ciudad} onChange={(e) => setCiudad(e.target.value)} required />
                         <label htmlFor="ciudad">Ciudad</label>
                     </FloatLabel>
                 </div>
 
-                <div className="mb-5">
-                    <ListBox value={selectPelicula} onChange={(e) => setSlectPelicula(e.value)} options={peliculas} className="w-full md:w-14rem" />
+                <div className="mb-1">
+                    <label htmlFor="pelicula">Seleccione pelicula</label>
+                    <ListBox id='pelicula' value={selectPelicula} onChange={(e) => setSlectPelicula(e.value)} options={peliculas} className="w-full md:w-14rem" />
                 </div>
             </Panel>
         </div >

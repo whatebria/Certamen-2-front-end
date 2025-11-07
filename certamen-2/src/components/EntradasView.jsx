@@ -18,7 +18,7 @@ function EntradasView({ entradasData, filtroPelicula, setFiltroPelicula, pelicul
         : entradasData;
 
     return (
-        <div className='mt-5'>
+        <div className='mt-3'>
             <Panel header="Entradas Compradas">
                 <div className="mb-3">
                     <Dropdown
